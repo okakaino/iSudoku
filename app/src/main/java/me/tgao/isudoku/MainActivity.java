@@ -1,6 +1,7 @@
 package me.tgao.isudoku;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,8 +12,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
-import java.time.Duration;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     private Button newGameBTN;
+
+//    private SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +34,7 @@ public class MainActivity extends AppCompatActivity {
         ListView recordListView = findViewById(R.id.record_list_view);
 
         ArrayList<Record> records = new ArrayList<>();
-        records.add(new Record(Duration.ofSeconds(13), LocalDate.of(2019, 11, 11)));
-        records.add(new Record(Duration.ofSeconds(13), LocalDate.of(2019, 11, 11)));
-        records.add(new Record(Duration.ofSeconds(13), LocalDate.of(2019, 11, 11)));
-
+        
         RecordListAdapter adapter = new RecordListAdapter(this, R.layout.record_item, records);
         recordListView.setAdapter(adapter);
 

@@ -4,38 +4,38 @@ import java.time.Duration;
 import java.time.LocalDate;
 
 public class Record {
-    private Duration time;
-    private LocalDate date;
+    private long time;
+    private long date;
 
-    public Record(Duration time, LocalDate date) {
+    public Record(long time, long date) {
         this.time = time;
         this.date = date;
     }
 
-    public Duration getTime() {
+    public long getTime() {
         return time;
     }
 
-    public void setTime(Duration time) {
+    public void setTime(long time) {
         this.time = time;
     }
 
-    public LocalDate getDate() {
+    public long getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(long date) {
         this.date = date;
     }
 
     // format time used to solve sudoku puzzle in seconds to HH:MM:SS
-    public String getTimeString() {
-        long seconds = time.getSeconds();
-        String durationStr = String.format(
-                "%d:%02d:%02d",
-                seconds / 3600,
-                (seconds % 3600) / 60,
-                seconds % 60);
-        return durationStr;
-    }
+//    public String getTimeString() {
+//        long seconds = time.getSeconds();
+//        String durationStr = String.format(
+//                "%d:%02d:%02d",
+//                seconds / 3600,
+//                (seconds % 3600) / 60,
+//                seconds % 60);
+//        return durationStr;
+//    }
 }
