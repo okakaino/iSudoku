@@ -10,8 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import java.time.Duration;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 class RecordListAdapter extends ArrayAdapter<Record> {
@@ -29,18 +27,18 @@ class RecordListAdapter extends ArrayAdapter<Record> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        Duration time = getItem(position).getTime();
-        LocalDate date = getItem(position).getDate();
+        long time = getItem(position).getTime();
+        long date = getItem(position).getDate();
 
         Record record = new Record(time, date);
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);
 
-        TextView tvTime = (TextView) convertView.findViewById(R.id.record_time);
-        TextView tvDate = (TextView) convertView.findViewById(R.id.record_date);
+        TextView tvTime = convertView.findViewById(R.id.record_time);
+        TextView tvDate = convertView.findViewById(R.id.record_date);
 
         tvTime.setText(record.getTimeString());
-        tvDate.setText(record.getDate().toString());
+        tvDate.setText(record.getDateString());
 
         return convertView;
     }

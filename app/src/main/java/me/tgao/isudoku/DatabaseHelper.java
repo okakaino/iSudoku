@@ -12,6 +12,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "records.db";
     private static final String TABLE_NAME = "record";
+    public static final String DURATION = "duration";
+    public static final String DATE = "date";
     
     public DatabaseHelper(@Nullable Context context) {
         super(context, DB_NAME, null, 1);
@@ -21,8 +23,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + TABLE_NAME + " (" +
                 "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "duration INTEGER NOT NULL, " +
-                "date INTEGER NOT NULL DEFAULT CURRENT_TIMESTAMP)");
+                DURATION + " INTEGER NOT NULL, " +
+                DATE + " INTEGER NOT NULL DEFAULT CURRENT_TIMESTAMP)");
     }
 
     @Override
@@ -55,8 +57,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private ContentValues getContentValues(Record record) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put("duration", record.getTime());
-        contentValues.put("date", record.getDate());
+        contentValues.put(DURATION, record.getTime());
+        contentValues.put(DATE, record.getDate());
 
         return contentValues;
     }

@@ -1,7 +1,7 @@
 package me.tgao.isudoku;
 
-import java.time.Duration;
-import java.time.LocalDate;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Record {
     private long time;
@@ -29,13 +29,19 @@ public class Record {
     }
 
     // format time used to solve sudoku puzzle in seconds to HH:MM:SS
-//    public String getTimeString() {
-//        long seconds = time.getSeconds();
-//        String durationStr = String.format(
-//                "%d:%02d:%02d",
-//                seconds / 3600,
-//                (seconds % 3600) / 60,
-//                seconds % 60);
-//        return durationStr;
-//    }
+    public String getTimeString() {
+        String durationStr = String.format(
+                "%d:%02d:%02d",
+                time / 3600,
+                (time % 3600) / 60,
+                time % 60);
+        return durationStr;
+    }
+
+    public String getDateString() {
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        System.out.println("Date in record is: " + getDate());
+        Date date = new Date(getDate() * 1000L);
+        return sf.format(date);
+    }
 }

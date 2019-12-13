@@ -4,8 +4,6 @@ import android.content.Context;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.time.Duration;
-
 import me.tgao.isudoku.view.sudokugrid.GameGrid;
 
 public class GameEngine {
@@ -14,6 +12,8 @@ public class GameEngine {
 
     private AppCompatActivity activity;
     private GameGrid grid = null;
+
+    private DatabaseHelper db;
 
     private int selectedPosX = -1, selectedPosY = -1;
 
@@ -66,12 +66,17 @@ public class GameEngine {
     public void finish() {
         GameTimer.getInstance().finish();
 
-        saveRecord(GameTimer.getInstance().getDuration());
+        saveRecord(GameTimer.getInstance().getRecord());
+
         finishActivity();
     }
 
-    public void saveRecord(Duration duration) {
+    public void saveRecord(Record record) {
+        db.addData(record);
+    }
 
+    public void setDB(DatabaseHelper db) {
+        this.db = db;
     }
 }
 

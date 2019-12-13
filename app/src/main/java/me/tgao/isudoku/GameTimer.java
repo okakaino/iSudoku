@@ -1,12 +1,13 @@
 package me.tgao.isudoku;
 
 import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDateTime;
 
 public class GameTimer {
 
-    private static LocalDateTime startTime;
-    private static LocalDateTime finishTime;
+    private static long startTime;
+    private static long finishTime;
 
     private static GameTimer instance;
 
@@ -21,18 +22,15 @@ public class GameTimer {
     }
 
     public void start() {
-        startTime = LocalDateTime.now();
+        startTime = Instant.now().getEpochSecond();
     }
 
     public void finish() {
-        finishTime = LocalDateTime.now();
+        finishTime = Instant.now().getEpochSecond();
     }
 
-    public Duration getDuration() {
-        System.out.print("Start time: ");
-        System.out.println(startTime);
-        System.out.print("Finish time: ");
-        System.out.println(finishTime);
-        return Duration.between(startTime, finishTime);
+    public Record getRecord() {
+        Record record = new Record(finishTime - startTime, finishTime);
+        return record;
     }
 }
